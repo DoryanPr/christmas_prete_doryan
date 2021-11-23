@@ -1,0 +1,9 @@
+{% block header %}
+    {{ knp_menu_render('main') }}
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}" class="buttonchristmas">Déconnexion</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="buttonchristmas">Connexion</a> | <a href="{{ path
+        ('app_register') }}" class="buttonchristmas">Inscription</a>
+    {% endif %}
+{% endblock %}
