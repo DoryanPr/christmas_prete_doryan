@@ -37,19 +37,19 @@
         </tr>
         <tr>
             <th>Picturemain</th>
-            <td>{{ article.picturemain }}</td>
+            <td><img src="{{ asset('uploads/manuels/' ~ article.picturemain) }}" alt=""></td>
         </tr>
         <tr>
             <th>Picturefront</th>
-            <td>{{ article.picturefront }}</td>
+            <td><img src="{{ asset('uploads/manuels/' ~ article.picturefront) }}" alt=""></td>
         </tr>
         <tr>
             <th>Pictureback</th>
-            <td>{{ article.pictureback }}</td>
+            <td><img src="{{ asset('uploads/manuels/' ~ article.pictureback) }}" alt=""></td>
         </tr>
         <tr>
             <th>Manuel</th>
-            <td><a href="{{ asset('uploads/brochures/' ~ product.brochureFilename) }}">View brochure (PDF)</a></td>
+            <td><a href="{{ asset('uploads/manuels/' ~ article.manuel) }}">View brochure (PDF)</a></td>
         </tr>
         </tbody>
     </table>

@@ -23,21 +23,55 @@ class ArticleType extends AbstractType
             ->add('description')
             ->add('price')
             ->add('stack')
-            ->add('picturemain')
-            ->add('picturefront')
-            ->add('pictureback')
-            ->add('manuels', FileType::class, [
-                'label' => 'Brochure (PDF file)',
-
-                // unmapped means that this field is not associated to any entity property
+            ->add('picturemain', FileType::class, [
+                'label' => 'Image JPEG, PNG',
                 'mapped' => false,
-
-                // make it optional so you don't have to re-upload the PDF file
-                // every time you edit the Product details
                 'required' => false,
-
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png'
+                        ],
+                        'mimeTypesMessage' => "Merci d' enregistrer une image au format jpeg,png",
+                    ])
+                ],
+            ])
+            ->add('picturefront', FileType::class, [
+                'label' => 'Image JPEG, PNG',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png'
+                        ],
+                        'mimeTypesMessage' => "Merci d' enregistrer une image au format jpeg,png",
+                    ])
+                ],
+            ])
+            ->add('pictureback', FileType::class, [
+                'label' => 'Image JPEG, PNG',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png'
+                        ],
+                        'mimeTypesMessage' => "Merci d' enregistrer une image au format jpeg,png",
+                    ])
+                ],
+            ])
+            ->add('manuel', FileType::class, [
+                'label' => 'Manuel (PDF file)',
+                'mapped' => false,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
@@ -45,7 +79,7 @@ class ArticleType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => "Merci d' enregistrer un document au format PDF",
                     ])
                 ],
             ])
@@ -63,8 +97,7 @@ class ArticleType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'required' => true
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

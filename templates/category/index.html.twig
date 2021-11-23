@@ -7,13 +7,15 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Teaser</th>
-                <th>Picture</th>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Teaser</th>
+            <th>Picture</th>
+            {% if is_granted('ROLE_ADMIN') %}
                 <th>actions</th>
-            </tr>
+            {% endif %}
+        </tr>
         </thead>
         <tbody>
         {% for category in categories %}
@@ -22,10 +24,12 @@
                 <td>{{ category.name }}</td>
                 <td>{{ category.teaser }}</td>
                 <td>{{ category.picture }}</td>
-                <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
-                </td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                        <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -34,6 +38,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('category_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('category_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

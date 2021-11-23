@@ -3,7 +3,9 @@
     {% if app.user %}
         <a href="{{ path('app_logout') }}" class="buttonchristmas">Déconnexion</a>
     {% else %}
-        <a href="{{ path('app_login') }}" class="buttonchristmas">Connexion</a> | <a href="{{ path
-        ('app_register') }}" class="buttonchristmas">Inscription</a>
+        <a href="{{ path('app_login') }}" class="buttonchristmas">Connexion</a>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('user_index') }}" class="buttonchristmas">Gestion des comptes</a>
     {% endif %}
 {% endblock %}
