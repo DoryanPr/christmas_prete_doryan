@@ -1,4 +1,17 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="col-8 mx-auto text-center">
+    {{ form_start(form) }}
+        {{ form_row(form.ean, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Code barre'}) }}
+        {{ form_row(form.name, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Nom' }) }}
+        {{ form_row(form.teaser, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Description courte' }) }}
+        {{ form_row(form.description, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Description' }) }}
+        {{ form_row(form.price, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Prix' }) }}
+        {{ form_row(form.stack, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Nombre en stock' }) }}
+        {{ form_row(form.picturemain, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Photo principal' }) }}
+        {{ form_row(form.picturefront, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Photo de face' }) }}
+        {{ form_row(form.pictureback, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Photo de dos' }) }}
+        {{ form_row(form.manuel, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Manuel de l\'article' }) }}
+        {{ form_row(form.category, {'attr': {'class': 'forminput d-flex flex-column mx-auto'}, 'label':'Catégorie' }) }}
+    <button class="btn buttonchristmas col-2 mx-auto">{{ button_label|default('Sauvegarder') }}</button>
+    {{ form_end(form) }}
+</div>
+

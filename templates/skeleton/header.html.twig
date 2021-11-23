@@ -1,11 +1,17 @@
 {% block header %}
-    {{ knp_menu_render('main') }}
-    {% if app.user %}
-        <a href="{{ path('app_logout') }}" class="buttonchristmas">Déconnexion</a>
-    {% else %}
-        <a href="{{ path('app_login') }}" class="buttonchristmas">Connexion</a>
-    {% endif %}
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('user_index') }}" class="buttonchristmas">Gestion des comptes</a>
-    {% endif %}
+    <div class="d-flex">
+        <img src="{{ asset('uploads/mariah_carey.jpg') }}"
+             alt="" height="100px" width="100px">
+        {{ knp_menu_render('main') }}
+    </div>
+    <div>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}" class="buttonchristmas">Déconnexion</a>
+        {% else %}
+            <a href="{{ path('app_login') }}" class="buttonchristmas">Connexion</a>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('user_index') }}" class="buttonchristmas">Gestion des comptes</a>
+        {% endif %}
+    </div>
 {% endblock %}

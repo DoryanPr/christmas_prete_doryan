@@ -12,8 +12,10 @@
             <th>Name</th>
             <th>Teaser</th>
             <th>Picture</th>
+            <th>actions</th>
+
             {% if is_granted('ROLE_ADMIN') %}
-                <th>actions</th>
+                <th>edit</th>
             {% endif %}
         </tr>
         </thead>
@@ -23,11 +25,14 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.teaser }}</td>
-                <td>{{ category.picture }}</td>
+                <td><img src="{{ asset('uploads/manuels/' ~ category.picture) }}" alt="" width="100px"
+                         height="100px"></td>
+                <td>
+                    <a href="{{ path('category_show', {'id': category.id}) }}">Voir</a>
+                </td>
                 {% if is_granted('ROLE_ADMIN') %}
                     <td>
-                        <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                        <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}">Modifier</a>
                     </td>
                 {% endif %}
             </tr>
@@ -39,6 +44,6 @@
         </tbody>
     </table>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('category_new') }}">Create new</a>
+        <a href="{{ path('category_new') }}">Nouvelle Catégorie</a>
     {% endif %}
 {% endblock %}

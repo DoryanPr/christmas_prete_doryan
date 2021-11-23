@@ -10,8 +10,10 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>actions</th>
+
             {% if is_granted('ROLE_ADMIN') %}
-                <th>actions</th>
+                <th>edit</th>
             {% endif %}
         </tr>
         </thead>
@@ -20,10 +22,12 @@
             <tr>
                 <td>{{ tag.id }}</td>
                 <td>{{ tag.name }}</td>
+                <td>
+                    <a href="{{ path('tag_show', {'id': tag.id}) }}">Voir</a>
+                </td>
                 {% if is_granted('ROLE_ADMIN') %}
                     <td>
-                        <a href="{{ path('tag_show', {'id': tag.id}) }}">show</a>
-                        <a href="{{ path('tag_edit', {'id': tag.id}) }}">edit</a>
+                        <a href="{{ path('tag_edit', {'id': tag.id}) }}">Modifier</a>
                     </td>
                 {% endif %}
             </tr>
@@ -35,6 +39,6 @@
         </tbody>
     </table>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('tag_new') }}">Create new</a>
+        <a href="{{ path('tag_new') }}">Nouveau Tag</a>
     {% endif %}
 {% endblock %}

@@ -1,47 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Liste des jouets{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+    <h1>Liste des jouets</h1>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Ean</th>
-            <th>Name</th>
-            <th>Teaser</th>
-            <th>Description</th>
+            <th>Visuel</th>
+            <th>Nom</th>
+            <th>Catégorie</th>
+            <th>Tags</th>
+            <th>Accroche</th>
             <th>Price</th>
-            <th>Stack</th>
-            <th>Picturemain</th>
-            <th>Picturefront</th>
-            <th>Pictureback</th>
-            <th>Manuel</th>
+            <th>actions</th>
             {% if is_granted('ROLE_ADMIN') %}
-                <th>actions</th>
+                <th>edit</th>
             {% endif %}
         </tr>
         </thead>
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.ean }}</td>
+                <td><img src="{{ asset('uploads/manuels/' ~ article.picturemain) }}" alt="" width="100px"
+                         height="100px"></td>
                 <td>{{ article.name }}</td>
+                <td>{{ article.category.name }}</td>
+                <td>
+                    {% for tag in article.getTag() %}
+                        {{ tag.name }}
+                    {% endfor %}
+                </td>
                 <td>{{ article.teaser }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.price }}</td>
-                <td>{{ article.stack }}</td>
-                <td>{{ article.picturemain }}</td>
-                <td>{{ article.picturefront }}</td>
-                <td>{{ article.pictureback }}</td>
-                <td>{{ article.manuel }}</td>
+                <td>{{ article.price + article.price * 0.2 }} euros</td>
+                <td>
+                        <a href="{{ path('article_show', {'id': article.id}) }}">Voir</a>
+                </td>
                 {% if is_granted('ROLE_ADMIN') %}
                     <td>
-                        <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                        <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                        <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
                     </td>
                 {% endif %}
             </tr>
@@ -53,6 +51,6 @@
         </tbody>
     </table>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('article_new') }}">Create new</a>
+        <a href="{{ path('article_new') }}" class="btn buttonchristmas">Créer un nouveau</a>
     {% endif %}
 {% endblock %}
